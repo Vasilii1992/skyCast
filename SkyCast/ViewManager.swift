@@ -13,9 +13,7 @@ class ViewManager {
     static let shared = ViewManager()
     private init() {}
     
-    let images: [UIImage] = [.init(systemName: "sun.min")!, .init(systemName: "sun.snow.fill")!,.init(systemName: "sun.min")!, .init(systemName: "sun.snow.fill")!,.init(systemName: "sun.min")!, .init(systemName: "sun.snow.fill")!,.init(systemName: "sun.min")!, .init(systemName: "sun.snow.fill")!]
-    
-    
+    let images: [UIImage] = [.init(systemName: "cloud.sun")!, .init(systemName: "sun.snow.fill")!, .init(systemName: "cloud.moon.rain.fill")!,.init(systemName: "moon.stars.circle.fill")!  ] 
     
     
     func slideTitle(titleText: String) -> UILabel {
@@ -46,13 +44,12 @@ class ViewManager {
             collection.heightAnchor.constraint(equalToConstant: 110).isActive = true
             collection.backgroundColor = .clear
             collection.showsHorizontalScrollIndicator = false
+            collection.alpha = 0.5
             
             return collection
         }()
         
         return collection
     }
-    
-    
     
 }

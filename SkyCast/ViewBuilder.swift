@@ -12,6 +12,9 @@ class ViewBuilder: NSObject {
     
     private let manager = ViewManager.shared
     private var weatherCollection: UICollectionView!
+    // так отслеживем какой вью на экране
+    private var currentBackgroundView: UIView?
+
     
     var controller: UIViewController
     var view: UIView
@@ -23,13 +26,68 @@ class ViewBuilder: NSObject {
     
     
     func getSnowView() {
-        let snowView = SnowView(frame: view.bounds)
-        snowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(snowView)
-        view.sendSubviewToBack(snowView)
+        let weatherBackgroundView = SnowBackgroundView(frame: self.view.bounds)
+        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
+        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        currentBackgroundView = weatherBackgroundView
+
     }
     
+    func getClearWeather() {
+
+        let weatherBackgroundView = SunBackgroundView(frame: self.view.bounds)
+        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
+        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        currentBackgroundView = weatherBackgroundView
+    }
     
+    func getRainyView() {
+        let weatherBackgroundView = RainyBackgroundView(frame: self.view.bounds)
+        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
+        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        currentBackgroundView = weatherBackgroundView
+    }
+    
+    func getStarryNightView() {
+        let weatherBackgroundView = StarryNightBackgroundView(frame: self.view.bounds)
+        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
+        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        currentBackgroundView = weatherBackgroundView    }
+    
+    
+    
+    func selectRandomCell() {
+       guard let weatherCollection = weatherCollection else { return }
+       let randomIndex = Int.random(in: 0..<ViewManager.shared.images.count)
+       let indexPath = IndexPath(item: randomIndex, section: 0)
+       weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+       collectionView(weatherCollection, didSelectItemAt: indexPath)
+   }
+
     
     func getWeatherSlider() {
         
@@ -38,8 +96,9 @@ class ViewBuilder: NSObject {
         weatherCollection = manager.getCollection(dataSource: self, delegate: self)
         weatherCollection.register(WeatherCell.self, forCellWithReuseIdentifier: WeatherCell.identifire)
         
-        view.addSubview(weatherTitle)
         view.addSubview(weatherCollection)
+        view.addSubview(weatherTitle)
+
         
         NSLayoutConstraint.activate([
             
@@ -77,8 +136,21 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-   
+        currentBackgroundView?.removeFromSuperview()
+
+        switch indexPath.item {
+        case 0:
+            getClearWeather()
+            
+        case 1:
+            getSnowView()
+        case 2:
+            getRainyView()
+        case 3:
+            getStarryNightView()
+
+        default:
+            break
+        }
     }
-    
-    
 }
