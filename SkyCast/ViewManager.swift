@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class ViewManager {
     
     static let shared = ViewManager()
@@ -43,7 +40,6 @@ class ViewManager {
             layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
             
             let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-           // collection.restorationIdentifier = id
             collection.delegate = delegate
             collection.dataSource = dataSource
             collection.translatesAutoresizingMaskIntoConstraints = false

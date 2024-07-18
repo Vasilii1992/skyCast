@@ -68,12 +68,19 @@ class StarryNightBackgroundView: UIView {
         cometLayer.contents = UIImage(named: "comet")?.cgImage
         cometLayer.frame = CGRect(x: bounds.width, y: bounds.height / 4, width: 100, height: 70)
         cometLayer.isHidden = true
+        cometLayer.opacity = 1.0 
+        cometLayer.shadowColor = UIColor.white.cgColor
+        cometLayer.shadowRadius = 10
+        cometLayer.shadowOpacity = 1.0
+        cometLayer.shadowOffset = CGSize.zero
         self.layer.addSublayer(cometLayer)
         addFlickerAnimation(to: cometLayer)
     }
     
+
+    
     private func startCometAnimationAfterDelay() {
-        Timer.scheduledTimer(withTimeInterval: 7.0, repeats: false) { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] _ in
             self?.animateComet()
         }
     }
@@ -82,8 +89,9 @@ class StarryNightBackgroundView: UIView {
         cometLayer.isHidden = false
         let animation = CABasicAnimation(keyPath: "position")
         animation.fromValue = CGPoint(x: bounds.width - 10, y: bounds.height / 6)
-        animation.toValue = CGPoint(x: bounds.midX, y: bounds.height / 2)
-        animation.duration = 4.0
+        
+        animation.toValue = CGPoint(x: bounds.minX, y: bounds.height / 2)
+        animation.duration = 5.0
         animation.isRemovedOnCompletion = true
         animation.fillMode = .forwards
         cometLayer.add(animation, forKey: "cometAnimation")

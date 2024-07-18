@@ -26,7 +26,6 @@ class ViewBuilder: NSObject {
     
     
     func setBackgroundView(_ weatherBackgroundView: UIView ) {
-        
         self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
         weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -90,11 +89,8 @@ class ViewBuilder: NSObject {
             weatherCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             weatherCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
             
-        
         ])
-        
     }
-    
 }
 extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -113,7 +109,18 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
         currentBackgroundView?.removeFromSuperview()
+        
+        for cell in collectionView.visibleCells {
+            cell.layer.borderWidth = 0
+            cell.layer.borderColor = nil
+        }
+
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.borderWidth = 3
+            cell.layer.borderColor = UIColor.systemBlue.cgColor
+        }
 
         switch indexPath.item {
         case 0:
