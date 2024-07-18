@@ -23,9 +23,9 @@ class SunBackgroundView: UIView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = [
-            UIColor(red: 68/255, green: 121/255, blue: 219/255, alpha: 1).cgColor,
-            UIColor(red: 111/255, green: 175/255, blue: 243/255, alpha: 1).cgColor,
-            UIColor(red: 190/255, green: 223/255, blue: 255/255, alpha: 1).cgColor
+            UIColor(hex: "#4479DB").cgColor,
+            UIColor(hex: "#6FAFF3").cgColor,
+            UIColor(hex: "#BEDFFF").cgColor
         ]
         gradientLayer.locations = [0.0, 0.5, 1.0]
         self.layer.addSublayer(gradientLayer)

@@ -27,8 +27,8 @@ class RainyBackgroundView: UIView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = [
-            UIColor(red: 32/255, green: 32/255, blue: 55/255, alpha: 1).cgColor, // lighter dark blue
-            UIColor(red: 10/255, green: 10/255, blue: 25/255, alpha: 1).cgColor // lighter almost black
+            UIColor(hex: "#202037").cgColor,
+            UIColor(hex: "#0A0A19").cgColor
         ]
         gradientLayer.locations = [0.0, 1.0]
         self.layer.insertSublayer(gradientLayer, at: 0)
