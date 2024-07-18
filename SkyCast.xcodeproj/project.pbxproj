@@ -75,10 +75,7 @@
 				6B173C412C46BBEF00FD3F3F /* MainViewController.swift */,
 				6B173C552C46CF0F00FD3F3F /* ViewManager.swift */,
 				6B173C572C46CF7400FD3F3F /* ViewBuilder.swift */,
-				6B173C532C46C37600FD3F3F /* SnowBackgroundView.swift */,
-				6B173C5B2C46F1A300FD3F3F /* SunBackgroundView.swift */,
-				6B173C5E2C47F3E600FD3F3F /* RainyBackgroundView.swift */,
-				6B173C602C482E9200FD3F3F /* StarryNightBackgroundView.swift */,
+				6B173C652C49228900FD3F3F /* Views */,
 				6B173C5D2C47DA4B00FD3F3F /* Cells */,
 				6B173C522C46BD5200FD3F3F /* Support */,
 				6B173C4B2C46BBF000FD3F3F /* Info.plist */,
@@ -118,6 +115,17 @@
 				6B173C632C491F6B00FD3F3F /* Weather.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6B173C652C49228900FD3F3F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6B173C5B2C46F1A300FD3F3F /* SunBackgroundView.swift */,
+				6B173C532C46C37600FD3F3F /* SnowBackgroundView.swift */,
+				6B173C5E2C47F3E600FD3F3F /* RainyBackgroundView.swift */,
+				6B173C602C482E9200FD3F3F /* StarryNightBackgroundView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

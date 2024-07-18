@@ -25,8 +25,8 @@ class ViewBuilder: NSObject {
     }
     
     
-    func getSnowView() {
-        let weatherBackgroundView = SnowBackgroundView(frame: self.view.bounds)
+    func setBackgroundView(_ weatherBackgroundView: UIView ) {
+        
         self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
         weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -36,57 +36,30 @@ class ViewBuilder: NSObject {
             weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         currentBackgroundView = weatherBackgroundView
-
+    }
+    
+    
+    func getSnowView() {
+        let weatherBackgroundView = SnowBackgroundView(frame: self.view.bounds)
+        setBackgroundView(weatherBackgroundView)
     }
     
     func getClearWeather() {
-
         let weatherBackgroundView = SunBackgroundView(frame: self.view.bounds)
-        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
-        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        currentBackgroundView = weatherBackgroundView
+        setBackgroundView(weatherBackgroundView)
     }
     
     func getRainyView() {
         let weatherBackgroundView = RainyBackgroundView(frame: self.view.bounds)
-        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
-        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        currentBackgroundView = weatherBackgroundView
+        setBackgroundView(weatherBackgroundView)
     }
     
     func getStarryNightView() {
         let weatherBackgroundView = StarryNightBackgroundView(frame: self.view.bounds)
-        self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
-        weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            weatherBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            weatherBackgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            weatherBackgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            weatherBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        currentBackgroundView = weatherBackgroundView    }
+        setBackgroundView(weatherBackgroundView)
+    }
     
     
-    
-//    func selectRandomCell() {
-//       guard let weatherCollection = weatherCollection else { return }
-//       let randomIndex = Int.random(in: 0..<ViewManager.shared.images.count)
-//       let indexPath = IndexPath(item: randomIndex, section: 0)
-//       weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-//       collectionView(weatherCollection, didSelectItemAt: indexPath)
-//   }
     func selectRandomCell() {
        guard let weatherCollection = weatherCollection else { return }
        let randomIndex = Int.random(in: 0..<ViewManager.shared.weathers.count)
@@ -113,8 +86,6 @@ class ViewBuilder: NSObject {
             weatherTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             weatherTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             
-            
-            
             weatherCollection.topAnchor.constraint(equalTo: weatherTitle.bottomAnchor, constant: 40),
             weatherCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             weatherCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
@@ -122,13 +93,11 @@ class ViewBuilder: NSObject {
         
         ])
         
-        
     }
     
 }
 extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      //  manager.images.count
         manager.weathers.count
     }
     
@@ -138,9 +107,7 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         let weather = manager.weathers[indexPath.item]
         cell.setWeather(weather)
-       // let icon = manager.images[indexPath.item]
-        //cell.setIcon(icon: icon)
-        
+
         return cell
     }
     
@@ -151,7 +118,6 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
         switch indexPath.item {
         case 0:
             getClearWeather()
-            
         case 1:
             getSnowView()
         case 2:
