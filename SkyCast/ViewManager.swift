@@ -17,7 +17,9 @@ class ViewManager {
         .init(image: .init(systemName: "sun.snow.fill")!, type: "Снег"),
         .init(image: .init(systemName: "cloud.moon.rain.fill")!, type: "Дождь"),
         .init(image: .init(systemName: "moon.stars.circle")!, type: "Ночь"),
-        .init(image: UIImage(systemName: "cloud.fog")!, type: "Туман")
+        .init(image: UIImage(systemName: "cloud.fog")!, type: "Туман"),
+        .init(image: UIImage(systemName: "cloud.bolt.rain")!, type: "Гроза")
+
     ]
 
     func slideTitle(titleText: String) -> UILabel {
@@ -29,7 +31,6 @@ class ViewManager {
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }
-    
     
     func getCollection(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate) -> UICollectionView {
         let collection: UICollectionView = {
@@ -54,5 +55,4 @@ class ViewManager {
         
         return collection
     }
-    
 }

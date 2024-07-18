@@ -9,7 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    
     private lazy var builder = {
         return ViewBuilder(controller: self)
     }()
@@ -23,6 +22,6 @@ class MainViewController: UIViewController {
             guard let self = self else { return }
             self.builder.selectRandomCell()
         }
-   }
+    }
 }
 

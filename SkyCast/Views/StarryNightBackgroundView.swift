@@ -76,8 +76,6 @@ class StarryNightBackgroundView: UIView {
         addFlickerAnimation(to: cometLayer)
     }
     
-
-    
     private func startCometAnimationAfterDelay() {
         Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] _ in
             self?.animateComet()

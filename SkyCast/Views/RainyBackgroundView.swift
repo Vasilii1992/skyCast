@@ -44,11 +44,10 @@ class RainyBackgroundView: UIView {
         floatingCloudLayer.opacity = 0.7
         self.layer.addSublayer(floatingCloudLayer)
         
-        // Animation to make the cloud float slowly
         let animation = CABasicAnimation(keyPath: "position.x")
         animation.fromValue = -80
         animation.toValue = self.bounds.width + cloudWidth
-        animation.duration = 70 // Adjust duration as needed
+        animation.duration = 70 
         animation.repeatCount = .infinity
         floatingCloudLayer.add(animation, forKey: "floatingAnimation")
     }

@@ -12,7 +12,7 @@ class ViewBuilder: NSObject {
     
     private let manager = ViewManager.shared
     private var weatherCollection: UICollectionView!
-    // так отслеживем какой вью на экране
+
     private var currentBackgroundView: UIView?
 
     
@@ -36,7 +36,6 @@ class ViewBuilder: NSObject {
         ])
         currentBackgroundView = weatherBackgroundView
     }
-    
     
     func getSnowView() {
         let weatherBackgroundView = SnowBackgroundView(frame: self.view.bounds)
@@ -63,6 +62,10 @@ class ViewBuilder: NSObject {
         setBackgroundView(weatherBackgroundView)
     }
     
+    func getStormView() {
+        let weatherBackgroundView = StormBackgroundView(frame: self.view.bounds)
+        setBackgroundView(weatherBackgroundView)
+    }
     
     func selectRandomCell() {
        guard let weatherCollection = weatherCollection else { return }
@@ -72,7 +75,6 @@ class ViewBuilder: NSObject {
        collectionView(weatherCollection, didSelectItemAt: indexPath)
    }
 
-    
     func getWeatherSlider() {
         
         let weatherTitle = manager.slideTitle(titleText: "Варианты Погоды")
@@ -83,7 +85,6 @@ class ViewBuilder: NSObject {
         view.addSubview(weatherCollection)
         view.addSubview(weatherTitle)
 
-        
         NSLayoutConstraint.activate([
             
             weatherTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
@@ -112,7 +113,6 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         currentBackgroundView?.removeFromSuperview()
@@ -138,6 +138,8 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
             getStarryNightView()
         case 4:
             getFoggyView()
+        case 5:
+            getStormView()
 
         default:
             break
