@@ -58,6 +58,11 @@ class ViewBuilder: NSObject {
         setBackgroundView(weatherBackgroundView)
     }
     
+    func getFoggyView() {
+        let weatherBackgroundView = FoggyBackgroundView(frame: self.view.bounds)
+        setBackgroundView(weatherBackgroundView)
+    }
+    
     
     func selectRandomCell() {
        guard let weatherCollection = weatherCollection else { return }
@@ -131,6 +136,8 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
             getRainyView()
         case 3:
             getStarryNightView()
+        case 4:
+            getFoggyView()
 
         default:
             break

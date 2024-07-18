@@ -20,6 +20,7 @@
 		6B173C5F2C47F3E600FD3F3F /* RainyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C5E2C47F3E600FD3F3F /* RainyBackgroundView.swift */; };
 		6B173C612C482E9200FD3F3F /* StarryNightBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C602C482E9200FD3F3F /* StarryNightBackgroundView.swift */; };
 		6B173C642C491F6B00FD3F3F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C632C491F6B00FD3F3F /* Weather.swift */; };
+		6B173C672C49338300FD3F3F /* FoggyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C662C49338300FD3F3F /* FoggyBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		6B173C5E2C47F3E600FD3F3F /* RainyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainyBackgroundView.swift; sourceTree = "<group>"; };
 		6B173C602C482E9200FD3F3F /* StarryNightBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarryNightBackgroundView.swift; sourceTree = "<group>"; };
 		6B173C632C491F6B00FD3F3F /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		6B173C662C49338300FD3F3F /* FoggyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoggyBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				6B173C532C46C37600FD3F3F /* SnowBackgroundView.swift */,
 				6B173C5E2C47F3E600FD3F3F /* RainyBackgroundView.swift */,
 				6B173C602C482E9200FD3F3F /* StarryNightBackgroundView.swift */,
+				6B173C662C49338300FD3F3F /* FoggyBackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B173C422C46BBEF00FD3F3F /* MainViewController.swift in Sources */,
+				6B173C672C49338300FD3F3F /* FoggyBackgroundView.swift in Sources */,
 				6B173C5C2C46F1A300FD3F3F /* SunBackgroundView.swift in Sources */,
 				6B173C3E2C46BBEF00FD3F3F /* AppDelegate.swift in Sources */,
 				6B173C642C491F6B00FD3F3F /* Weather.swift in Sources */,

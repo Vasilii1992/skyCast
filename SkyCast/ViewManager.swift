@@ -16,7 +16,8 @@ class ViewManager {
         .init(image: .init(systemName: "cloud.sun")!, type: "Солнечно"),
         .init(image: .init(systemName: "sun.snow.fill")!, type: "Снег"),
         .init(image: .init(systemName: "cloud.moon.rain.fill")!, type: "Дождь"),
-        .init(image: .init(systemName: "moon.stars.circle")!, type: "Ночь")
+        .init(image: .init(systemName: "moon.stars.circle")!, type: "Ночь"),
+        .init(image: UIImage(systemName: "cloud.fog")!, type: "Туман")
     ]
 
     func slideTitle(titleText: String) -> UILabel {
