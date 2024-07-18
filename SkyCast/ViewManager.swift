@@ -8,14 +8,20 @@
 import UIKit
 
 
+
+
 class ViewManager {
     
     static let shared = ViewManager()
     private init() {}
     
-    let images: [UIImage] = [.init(systemName: "cloud.sun")!, .init(systemName: "sun.snow.fill")!, .init(systemName: "cloud.moon.rain.fill")!,.init(systemName: "moon.stars.circle.fill")!  ] 
-    
-    
+    let weathers: [Weather] = [
+        .init(image: .init(systemName: "cloud.sun")!, type: "Солнечно"),
+        .init(image: .init(systemName: "sun.snow.fill")!, type: "Снег"),
+        .init(image: .init(systemName: "cloud.moon.rain.fill")!, type: "Дождь"),
+        .init(image: .init(systemName: "moon.stars.circle")!, type: "Ночь")
+    ]
+
     func slideTitle(titleText: String) -> UILabel {
         let title = UILabel()
         title.text = titleText

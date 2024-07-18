@@ -14,26 +14,43 @@ class WeatherCell: UICollectionViewCell {
    private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        image.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        image.widthAnchor.constraint(equalToConstant: 40).isActive = true
     
         return image
     }()
+    
+    private lazy var weatherLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemBlue
+        label.font = UIFont.systemFont(ofSize: 14,weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
 
-    func setIcon(icon: UIImage) {
-        imageView.image = icon
+        
+        return label
+    }()
+    
+    
+    func setWeather(_ weather: Weather) {
+        imageView.image = weather.image
+        weatherLabel.text = weather.type
+        
         self.addSubview(imageView)
-        self.backgroundColor = .white 
+        self.addSubview(weatherLabel)
+        
+        self.backgroundColor = .white
         self.layer.cornerRadius = 25
         self.clipsToBounds = true
-     
+        
         
         NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-
-
+            
+            weatherLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            weatherLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5)
+            
         ])
-        
     }
+
 }

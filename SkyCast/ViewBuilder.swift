@@ -80,9 +80,16 @@ class ViewBuilder: NSObject {
     
     
     
+//    func selectRandomCell() {
+//       guard let weatherCollection = weatherCollection else { return }
+//       let randomIndex = Int.random(in: 0..<ViewManager.shared.images.count)
+//       let indexPath = IndexPath(item: randomIndex, section: 0)
+//       weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+//       collectionView(weatherCollection, didSelectItemAt: indexPath)
+//   }
     func selectRandomCell() {
        guard let weatherCollection = weatherCollection else { return }
-       let randomIndex = Int.random(in: 0..<ViewManager.shared.images.count)
+       let randomIndex = Int.random(in: 0..<ViewManager.shared.weathers.count)
        let indexPath = IndexPath(item: randomIndex, section: 0)
        weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
        collectionView(weatherCollection, didSelectItemAt: indexPath)
@@ -121,15 +128,18 @@ class ViewBuilder: NSObject {
 }
 extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        manager.images.count
+      //  manager.images.count
+        manager.weathers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCell.identifire, for: indexPath) as? WeatherCell else {
             return UICollectionViewCell()
         }
-        let icon = manager.images[indexPath.item]
-        cell.setIcon(icon: icon)
+        let weather = manager.weathers[indexPath.item]
+        cell.setWeather(weather)
+       // let icon = manager.images[indexPath.item]
+        //cell.setIcon(icon: icon)
         
         return cell
     }

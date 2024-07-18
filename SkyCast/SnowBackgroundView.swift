@@ -91,7 +91,7 @@ class SnowView: UIView {
         cell.yAcceleration = 30
         // рахмер снежинок
         cell.scale = 0.01
-        cell.scaleRange = 0.02
+        cell.scaleRange = 0.013
         cell.emissionRange = .pi
         return cell
     }
