@@ -1,9 +1,3 @@
-//
-//  ViewManager.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 16.07.2024.
-//
 
 import UIKit
 
@@ -14,10 +8,10 @@ class ViewManager {
     
     let weathers: [Weather] = [
         .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.sunny)!, type: Resources.Strings.TypeOfWeathers.sunny),
-        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.snow)!, type: Resources.Strings.TypeOfWeathers.snow),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.fog)!, type: Resources.Strings.TypeOfWeathers.fog),
         .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.rain)!, type: Resources.Strings.TypeOfWeathers.rain),
         .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.night)!, type: Resources.Strings.TypeOfWeathers.night),
-        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.fog)!, type: Resources.Strings.TypeOfWeathers.fog),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.snow)!, type: Resources.Strings.TypeOfWeathers.snow),
         .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.storm)!, type: Resources.Strings.TypeOfWeathers.storm),
     ]
 

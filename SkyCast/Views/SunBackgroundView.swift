@@ -1,9 +1,4 @@
-//
-//  WeatherBackgroundView.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 16.07.2024.
-//
+
 import UIKit
 
 class SunBackgroundView: UIView {
@@ -125,8 +120,3 @@ class CloudView: UIView {
         self.layer.addSublayer(cloudLayer)
     }
 }
-
-
-
-
-

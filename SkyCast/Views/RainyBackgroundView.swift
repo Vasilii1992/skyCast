@@ -1,9 +1,3 @@
-//
-//  RainyBackgroundView.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 17.07.2024.
-//
 
 import UIKit
 
@@ -15,7 +9,6 @@ class RainyBackgroundView: UIView {
         addCloudView()
         addRainView()
         addFloatingCloudView()
-
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +27,6 @@ class RainyBackgroundView: UIView {
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    
     private func addFloatingCloudView() {
         let floatingCloudLayer = CALayer()
         let cloudWidth: CGFloat = 400
@@ -72,8 +64,8 @@ class RainyBackgroundView: UIView {
         cell.lifetime = 5.0
         cell.velocity = 1000
         cell.velocityRange = 900
-        cell.scale = 0.002
-        cell.scaleRange = 0.003
+        cell.scale = 0.008
+        cell.scaleRange = 0.01
         cell.yAcceleration = 500
         cell.emissionRange = .pi / 4
         

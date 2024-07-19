@@ -1,9 +1,3 @@
-//
-//  SnowView.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 16.07.2024.
-//
 
 import UIKit
 
@@ -38,7 +32,6 @@ class SnowBackgroundView: UIView {
         self.addSubview(snowView)
     }
     
-    
     private func addSunView() {
         let sunView = SunView(frame: self.bounds)
         self.addSubview(sunView)
@@ -49,7 +42,6 @@ class SnowBackgroundView: UIView {
         self.addSubview(cloudView)
     }
 }
-
 
 class SnowView: UIView {
     
@@ -81,15 +73,11 @@ class SnowView: UIView {
     private func makeSnowflakeCell() -> CAEmitterCell {
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: Resources.Strings.ImageName.snowflake)?.cgImage
-       // количество снежинок
         cell.birthRate = 10
-        // время жизни
         cell.lifetime = 20.0
         cell.velocity = 30
-        
         cell.velocityRange = 20
         cell.yAcceleration = 30
-        // рахмер снежинок
         cell.scale = 0.01
         cell.scaleRange = 0.013
         cell.emissionRange = .pi

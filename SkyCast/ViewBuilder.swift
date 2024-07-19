@@ -1,12 +1,5 @@
-//
-//  ViewBuilder.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 16.07.2024.
-//
 
 import UIKit
-
 
 class ViewBuilder: NSObject {
     
@@ -23,7 +16,6 @@ class ViewBuilder: NSObject {
         self.view = controller.view
     }
     
-    
     func setBackgroundView(_ weatherBackgroundView: UIView ) {
         self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
         weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,37 +27,8 @@ class ViewBuilder: NSObject {
         ])
         currentBackgroundView = weatherBackgroundView
     }
-    
-    func getSnowView() {
-        let weatherBackgroundView = SnowBackgroundView(frame: self.view.bounds)
-        setBackgroundView(weatherBackgroundView)
-    }
-    
-    func getClearWeather() {
-        let weatherBackgroundView = SunBackgroundView(frame: self.view.bounds)
-        setBackgroundView(weatherBackgroundView)
-    }
-    
-    func getRainyView() {
-        let weatherBackgroundView = RainyBackgroundView(frame: self.view.bounds)
-        setBackgroundView(weatherBackgroundView)
-    }
-    
-    func getStarryNightView() {
-        let weatherBackgroundView = StarryNightBackgroundView(frame: self.view.bounds)
-        setBackgroundView(weatherBackgroundView)
-    }
-    
-    func getFoggyView() {
-        let weatherBackgroundView = FoggyBackgroundView(frame: self.view.bounds)
-        setBackgroundView(weatherBackgroundView)
-    }
-    
-    func getStormView() {
-        let weatherBackgroundView = StormBackgroundView(frame: self.view.bounds)
-        setBackgroundView(weatherBackgroundView)
-    }
-    
+
+//MARK: random screen switching
     func selectRandomCell() {
        guard let weatherCollection = weatherCollection else { return }
        let randomIndex = Int.random(in: 0..<ViewManager.shared.weathers.count)
@@ -73,6 +36,29 @@ class ViewBuilder: NSObject {
        weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
        collectionView(weatherCollection, didSelectItemAt: indexPath)
    }
+    
+//MARK: Animation of the transition between screens
+    func animateBackgroundTransition(to newBackgroundView: UIView) {
+            guard let currentBackgroundView = currentBackgroundView else {
+                setBackgroundView(newBackgroundView)
+                newBackgroundView.alpha = 0
+                UIView.animate(withDuration: 1.8, animations: {
+                    newBackgroundView.alpha = 1
+                })
+                return
+            }
+
+            newBackgroundView.alpha = 0
+            setBackgroundView(newBackgroundView)
+
+            UIView.animate(withDuration: 1.8, animations: {
+                currentBackgroundView.alpha = 0
+                newBackgroundView.alpha = 1
+            }, completion: { _ in
+                currentBackgroundView.removeFromSuperview()
+            })
+        }
+
 
     func getWeatherSlider() {
         
@@ -97,6 +83,9 @@ class ViewBuilder: NSObject {
         ])
     }
 }
+
+
+//MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         manager.weathers.count
@@ -111,37 +100,35 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
 
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        currentBackgroundView?.removeFromSuperview()
-        
-        for cell in collectionView.visibleCells {
-            cell.layer.borderWidth = 0
-            cell.layer.borderColor = nil
-        }
+            for cell in collectionView.visibleCells {
+                cell.layer.borderWidth = 0
+                cell.layer.borderColor = nil
+            }
 
-        if let cell = collectionView.cellForItem(at: indexPath) {
-            cell.layer.borderWidth = 3
-            cell.layer.borderColor = UIColor.systemBlue.cgColor
-        }
+            if let cell = collectionView.cellForItem(at: indexPath) {
+                cell.layer.borderWidth = 3
+                cell.layer.borderColor = UIColor.systemBlue.cgColor
+            }
 
-        switch indexPath.item {
-        case 0:
-            getClearWeather()
-        case 1:
-            getSnowView()
-        case 2:
-            getRainyView()
-        case 3:
-            getStarryNightView()
-        case 4:
-            getFoggyView()
-        case 5:
-            getStormView()
+            let newBackgroundView: UIView
+            switch indexPath.item {
+            case 0:
+                newBackgroundView = SunBackgroundView(frame: self.view.bounds)
+            case 1:
+                newBackgroundView = FoggyBackgroundView(frame: self.view.bounds)
+            case 2:
+                newBackgroundView = RainyBackgroundView(frame: self.view.bounds)
+            case 3:
+                newBackgroundView = StarryNightBackgroundView(frame: self.view.bounds)
+            case 4:
+                newBackgroundView = SnowBackgroundView(frame: self.view.bounds)
+            case 5:
+                newBackgroundView = StormBackgroundView(frame: self.view.bounds)
+            default:
+                return
+            }
 
-        default:
-            break
+            animateBackgroundTransition(to: newBackgroundView)
         }
-    }
 }

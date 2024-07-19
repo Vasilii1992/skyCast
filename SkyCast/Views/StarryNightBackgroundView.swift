@@ -1,10 +1,4 @@
-//
-//  StarryNightBackgroundView.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 17.07.2024.
-//
-//
+
 import UIKit
 
 class StarryNightBackgroundView: UIView {

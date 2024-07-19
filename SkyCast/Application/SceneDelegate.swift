@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 16.07.2024.
-//
 
 import UIKit
 
@@ -26,4 +20,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) { }
 
 }
-

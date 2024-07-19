@@ -1,9 +1,3 @@
-//
-//  StormBackgroundView.swift
-//  SkyCast
-//
-//  Created by Василий Тихонов on 18.07.2024.
-//
 
 import UIKit
 
@@ -18,8 +12,8 @@ class StormBackgroundView: UIView {
         addCloudView()
         addRainView()
         startLightning()
-        addFloatingCloudView(at: CGPoint(x: 50, y: 40)) // First cloud
-        addFloatingCloudView(at: CGPoint(x: 150, y: 100)) // Second cloud
+        addFloatingCloudView(at: CGPoint(x: 50, y: 40)) 
+        addFloatingCloudView(at: CGPoint(x: 150, y: 100))
         addFloatingCloudView(at: CGPoint(x: -160, y: 60))
         addFloatingCloudView(at: CGPoint(x: -25, y: 170))
     }
