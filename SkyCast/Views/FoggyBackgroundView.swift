@@ -24,13 +24,32 @@ class FoggyBackgroundView: UIView {
         gradientLayer.locations = [0.5, 0.8]
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
     private func addCloudView() {
         let cloudView = CloudView(frame: self.bounds)
         self.addSubview(cloudView)
     }
-
+    
     private func addFogView() {
-        let fogLayer = CALayer()
+        let fogView = FogView(frame: self.bounds)
+        self.addSubview(fogView)
+    }
+}
+
+class FogView: UIView {
+    
+    private let fogLayer = CALayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupFogLayer()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupFogLayer() {
         let fogImage = UIImage(named: Resources.Strings.ImageName.fog)?.cgImage
         fogLayer.contents = fogImage
         fogLayer.frame = CGRect(x: -self.bounds.width, y: 0, width: self.bounds.width * 2, height: self.bounds.height / 2)

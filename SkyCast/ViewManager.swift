@@ -14,7 +14,7 @@ class ViewManager {
         .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.snow)!, type: Resources.Strings.TypeOfWeathers.snow),
         .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.storm)!, type: Resources.Strings.TypeOfWeathers.storm),
     ]
-
+    
     func slideTitle(titleText: String) -> UILabel {
         let title = UILabel()
         title.text = titleText

@@ -13,7 +13,6 @@ class RainyBackgroundView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-
     }
     
     private func setupGradientLayer() {
@@ -28,7 +27,35 @@ class RainyBackgroundView: UIView {
     }
 
     private func addFloatingCloudView() {
-        let floatingCloudLayer = CALayer()
+        let floatingCloudView = FloatingCloudView(frame: self.bounds)
+        self.addSubview(floatingCloudView)
+    }
+    
+    private func addCloudView() {
+        let cloudView = DarkCloudView(frame: self.bounds)
+        self.addSubview(cloudView)
+    }
+    
+    private func addRainView() {
+        let rainView = RainView(frame: self.bounds)
+        self.addSubview(rainView)
+    }
+}
+
+class FloatingCloudView: UIView {
+    
+    private let floatingCloudLayer = CALayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupFloatingCloudLayer()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupFloatingCloudLayer() {
         let cloudWidth: CGFloat = 400
         let cloudHeight: CGFloat = 200
         floatingCloudLayer.frame = CGRect(x: -cloudWidth, y: 60, width: cloudWidth, height: cloudHeight)
@@ -39,21 +66,47 @@ class RainyBackgroundView: UIView {
         let animation = CABasicAnimation(keyPath: "position.x")
         animation.fromValue = -80
         animation.toValue = self.bounds.width + cloudWidth
-        animation.duration = 70 
+        animation.duration = 70
         animation.repeatCount = .infinity
         floatingCloudLayer.add(animation, forKey: "floatingAnimation")
     }
+}
+
+class DarkCloudView: UIView {
     
-    private func addCloudView() {
-        let cloudLayer = CALayer()
+    private let cloudLayer = CALayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCloudLayer()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupCloudLayer() {
         cloudLayer.frame = CGRect(x: 0, y: -50, width: 600, height: 200)
         cloudLayer.contents = UIImage(named: Resources.Strings.ImageName.clouds)?.cgImage
         cloudLayer.opacity = 0.7
         self.layer.addSublayer(cloudLayer)
     }
+}
+
+class RainView: UIView {
     
-    private func addRainView() {
-        let rainLayer = CAEmitterLayer()
+    private let rainLayer = CAEmitterLayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupRainLayer()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupRainLayer() {
         rainLayer.emitterShape = .line
         rainLayer.emitterPosition = CGPoint(x: bounds.midX, y: 0)
         rainLayer.emitterSize = CGSize(width: bounds.size.width, height: 1)
@@ -73,3 +126,4 @@ class RainyBackgroundView: UIView {
         self.layer.addSublayer(rainLayer)
     }
 }
+

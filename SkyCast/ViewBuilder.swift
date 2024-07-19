@@ -5,12 +5,12 @@ class ViewBuilder: NSObject {
     
     private let manager = ViewManager.shared
     private var weatherCollection: UICollectionView!
-
+    
     private var currentBackgroundView: UIView?
-
+    
     var controller: UIViewController
     var view: UIView
-
+    
     init(controller: UIViewController) {
         self.controller = controller
         self.view = controller.view
@@ -27,39 +27,43 @@ class ViewBuilder: NSObject {
         ])
         currentBackgroundView = weatherBackgroundView
     }
-
-//MARK: random screen switching
-    func selectRandomCell() {
-       guard let weatherCollection = weatherCollection else { return }
-       let randomIndex = Int.random(in: 0..<ViewManager.shared.weathers.count)
-       let indexPath = IndexPath(item: randomIndex, section: 0)
-       weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-       collectionView(weatherCollection, didSelectItemAt: indexPath)
-   }
     
-//MARK: Animation of the transition between screens
-    func animateBackgroundTransition(to newBackgroundView: UIView) {
-            guard let currentBackgroundView = currentBackgroundView else {
-                setBackgroundView(newBackgroundView)
-                newBackgroundView.alpha = 0
-                UIView.animate(withDuration: 1.8, animations: {
-                    newBackgroundView.alpha = 1
-                })
-                return
-            }
-
-            newBackgroundView.alpha = 0
-            setBackgroundView(newBackgroundView)
-
-            UIView.animate(withDuration: 1.8, animations: {
-                currentBackgroundView.alpha = 0
-                newBackgroundView.alpha = 1
-            }, completion: { _ in
-                currentBackgroundView.removeFromSuperview()
-            })
+    //MARK: random screen switching
+    func selectRandomCell() {
+        guard let weatherCollection = weatherCollection else { return }
+        let randomIndex = Int.random(in: 0..<ViewManager.shared.weathers.count)
+        let indexPath = IndexPath(item: randomIndex, section: 0)
+        weatherCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            weatherCollection.selectItem(at: indexPath, animated: true, scrollPosition: [])
+            self.collectionView(weatherCollection, didSelectItemAt: indexPath)
         }
-
-
+    }
+    
+    //MARK: Animation of the transition between screens
+    func animateBackgroundTransition(to newBackgroundView: UIView) {
+        guard let currentBackgroundView = currentBackgroundView else {
+            setBackgroundView(newBackgroundView)
+            newBackgroundView.alpha = 0
+            UIView.animate(withDuration: 1.8, animations: {
+                newBackgroundView.alpha = 1
+            })
+            return
+        }
+        
+        newBackgroundView.alpha = 0
+        setBackgroundView(newBackgroundView)
+        
+        UIView.animate(withDuration: 1.8, animations: {
+            currentBackgroundView.alpha = 0
+            newBackgroundView.alpha = 1
+        }, completion: { _ in
+            currentBackgroundView.removeFromSuperview()
+        })
+    }
+    
+    
     func getWeatherSlider() {
         
         let weatherTitle = manager.slideTitle(titleText: Resources.Strings.weatherTitleText)
@@ -69,7 +73,7 @@ class ViewBuilder: NSObject {
         
         view.addSubview(weatherCollection)
         view.addSubview(weatherTitle)
-
+        
         NSLayoutConstraint.activate([
             
             weatherTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
@@ -97,38 +101,38 @@ extension ViewBuilder: UICollectionViewDataSource, UICollectionViewDelegate {
         }
         let weather = manager.weathers[indexPath.item]
         cell.setWeather(weather)
-
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            for cell in collectionView.visibleCells {
-                cell.layer.borderWidth = 0
-                cell.layer.borderColor = nil
-            }
-
-            if let cell = collectionView.cellForItem(at: indexPath) {
-                cell.layer.borderWidth = 3
-                cell.layer.borderColor = UIColor.systemBlue.cgColor
-            }
-
-            let newBackgroundView: UIView
-            switch indexPath.item {
-            case 0:
-                newBackgroundView = SunBackgroundView(frame: self.view.bounds)
-            case 1:
-                newBackgroundView = FoggyBackgroundView(frame: self.view.bounds)
-            case 2:
-                newBackgroundView = RainyBackgroundView(frame: self.view.bounds)
-            case 3:
-                newBackgroundView = StarryNightBackgroundView(frame: self.view.bounds)
-            case 4:
-                newBackgroundView = SnowBackgroundView(frame: self.view.bounds)
-            case 5:
-                newBackgroundView = StormBackgroundView(frame: self.view.bounds)
-            default:
-                return
-            }
-
-            animateBackgroundTransition(to: newBackgroundView)
+        for cell in collectionView.visibleCells {
+            cell.layer.borderWidth = 0
+            cell.layer.borderColor = nil
         }
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.borderWidth = 3
+            cell.layer.borderColor = UIColor.systemBlue.cgColor
+        }
+        
+        let newBackgroundView: UIView
+        switch indexPath.item {
+        case 0:
+            newBackgroundView = SunBackgroundView(frame: self.view.bounds)
+        case 1:
+            newBackgroundView = FoggyBackgroundView(frame: self.view.bounds)
+        case 2:
+            newBackgroundView = RainyBackgroundView(frame: self.view.bounds)
+        case 3:
+            newBackgroundView = StarryNightBackgroundView(frame: self.view.bounds)
+        case 4:
+            newBackgroundView = SnowBackgroundView(frame: self.view.bounds)
+        case 5:
+            newBackgroundView = StormBackgroundView(frame: self.view.bounds)
+        default:
+            return
+        }
+        
+        animateBackgroundTransition(to: newBackgroundView)
+    }
 }

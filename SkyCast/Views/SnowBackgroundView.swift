@@ -60,7 +60,6 @@ class SnowView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupEmitter()
     }
     
     private func setupEmitter() {

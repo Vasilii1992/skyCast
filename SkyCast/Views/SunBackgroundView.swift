@@ -53,9 +53,7 @@ class SunView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupSunLayer()
-        setupSunEffectLayer()
-        startDisplayLink()
+
     }
     
     private func setupSunLayer() {
@@ -110,7 +108,6 @@ class CloudView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupCloudLayer()
     }
     
     private func setupCloudLayer() {

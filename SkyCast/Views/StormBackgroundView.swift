@@ -1,21 +1,16 @@
 
+
 import UIKit
 
 class StormBackgroundView: UIView {
-    
-    private var lightningLayer: CALayer?
-    private var lightningTimer: Timer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupGradientLayer()
         addCloudView()
         addRainView()
-        startLightning()
-        addFloatingCloudView(at: CGPoint(x: 50, y: 40)) 
-        addFloatingCloudView(at: CGPoint(x: 150, y: 100))
-        addFloatingCloudView(at: CGPoint(x: -160, y: 60))
-        addFloatingCloudView(at: CGPoint(x: -25, y: 170))
+        addLightningView()
+        addMultipleFloatingCloudViews()
     }
     
     required init?(coder: NSCoder) {
@@ -33,8 +28,71 @@ class StormBackgroundView: UIView {
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    private func addFloatingCloudView(at position: CGPoint) {
-        let floatingCloudLayer = CALayer()
+    private func addCloudView() {
+        let cloudView = CloudForStorm(frame: self.bounds)
+        self.addSubview(cloudView)
+    }
+    
+    private func addRainView() {
+        let rainView = LinearRainView(frame: self.bounds)
+        self.addSubview(rainView)
+    }
+    
+    private func addLightningView() {
+        let lightningView = LightningView(frame: self.bounds)
+        self.addSubview(lightningView)
+    }
+    
+    private func addMultipleFloatingCloudViews() {
+        let positions = [
+            CGPoint(x: 50, y: 40),
+            CGPoint(x: 150, y: 100),
+            CGPoint(x: -160, y: 60),
+            CGPoint(x: -25, y: 170)
+        ]
+        
+        for position in positions {
+            let floatingCloudView = FloatingDarkCloudView(frame: self.bounds, position: position)
+            self.addSubview(floatingCloudView)
+        }
+    }
+}
+
+class CloudForStorm: UIView {
+    
+    private let cloudLayer = CALayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCloudLayer()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupCloudLayer() {
+        cloudLayer.frame = CGRect(x: 0, y: 0, width: 600, height: 200)
+        cloudLayer.contents = UIImage(named: Resources.Strings.ImageName.darkClouds)?.cgImage
+        cloudLayer.opacity = 0.7
+        self.layer.addSublayer(cloudLayer)
+    }
+}
+
+class FloatingDarkCloudView: UIView {
+    
+    private let floatingCloudLayer = CALayer()
+    
+    init(frame: CGRect, position: CGPoint) {
+        super.init(frame: frame)
+        setupFloatingCloudLayer(at: position)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupFloatingCloudLayer(at position: CGPoint) {
         let cloudWidth: CGFloat = 400
         let cloudHeight: CGFloat = 200
         floatingCloudLayer.frame = CGRect(x: position.x, y: position.y, width: cloudWidth, height: cloudHeight)
@@ -49,17 +107,22 @@ class StormBackgroundView: UIView {
         animation.repeatCount = .infinity
         floatingCloudLayer.add(animation, forKey: "floatingAnimation")
     }
+}
+
+class LinearRainView: UIView {
     
-    private func addCloudView() {
-        let cloudLayer = CALayer()
-        cloudLayer.frame = CGRect(x: 0, y: 0, width: 600, height: 200)
-        cloudLayer.contents = UIImage(named: Resources.Strings.ImageName.darkClouds)?.cgImage
-        cloudLayer.opacity = 0.7
-        self.layer.addSublayer(cloudLayer)
+    private let rainLayer = CAEmitterLayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupRainLayer()
     }
     
-    private func addRainView() {
-        let rainLayer = CAEmitterLayer()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupRainLayer() {
         rainLayer.emitterShape = .line
         rainLayer.emitterPosition = CGPoint(x: bounds.midX, y: 0)
         rainLayer.emitterSize = CGSize(width: bounds.size.width, height: 1)
@@ -78,39 +141,54 @@ class StormBackgroundView: UIView {
         rainLayer.emitterCells = [cell]
         self.layer.addSublayer(rainLayer)
     }
+}
 
+class LightningView: UIView {
+    
+    private var lightningLayer: CALayer?
+    private var lightningTimer: Timer?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        startLightning()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     private func startLightning() {
         lightningTimer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(addLightning), userInfo: nil, repeats: true)
     }
     
     @objc private func addLightning() {
-           lightningLayer?.removeFromSuperlayer()
-           
-           let lightningLayer = CALayer()
-        let lightningImage = UIImage(named:Resources.Strings.ImageName.lightning)?.cgImage
-           let lightningImageWidth = lightningImage?.width ?? 0
-           let lightningImageHeight = lightningImage?.height ?? 0
-           let halfWidth = CGFloat(lightningImageWidth) / 2
-           let halfHeight = CGFloat(lightningImageHeight) / 2
-           lightningLayer.contents = lightningImage
-           lightningLayer.frame = CGRect(
-               x: 0,
-               y: 10,
-               width: halfWidth,
-               height: halfHeight
-           )
-           lightningLayer.opacity = 0.0
-           self.layer.insertSublayer(lightningLayer, below: self.layer.sublayers?.last)
-           self.lightningLayer = lightningLayer
-           
-           let flashAnimation = CAKeyframeAnimation(keyPath: "opacity")
-           flashAnimation.values = [0.0, 0.5, 1.0, 0.5, 0.0]
-           flashAnimation.keyTimes = [0, 0.2, 0.4, 0.6, 1.0]
-           flashAnimation.duration = 1.0
-           flashAnimation.repeatCount = 1
-           
-           lightningLayer.add(flashAnimation, forKey: "flashAnimation")
-       }
+        lightningLayer?.removeFromSuperlayer()
+        
+        let lightningLayer = CALayer()
+        let lightningImage = UIImage(named: Resources.Strings.ImageName.lightning)?.cgImage
+        let lightningImageWidth = lightningImage?.width ?? 0
+        let lightningImageHeight = lightningImage?.height ?? 0
+        let halfWidth = CGFloat(lightningImageWidth) / 2
+        let halfHeight = CGFloat(lightningImageHeight) / 2
+        lightningLayer.contents = lightningImage
+        lightningLayer.frame = CGRect(
+            x: 0,
+            y: 10,
+            width: halfWidth,
+            height: halfHeight
+        )
+        lightningLayer.opacity = 0.0
+        self.layer.insertSublayer(lightningLayer, below: self.layer.sublayers?.last)
+        self.lightningLayer = lightningLayer
+        
+        let flashAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        flashAnimation.values = [0.0, 0.5, 1.0, 0.5, 0.0]
+        flashAnimation.keyTimes = [0, 0.2, 0.4, 0.6, 1.0]
+        flashAnimation.duration = 1.0
+        flashAnimation.repeatCount = 1
+        
+        lightningLayer.add(flashAnimation, forKey: "flashAnimation")
+    }
     
     deinit {
         lightningTimer?.invalidate()
