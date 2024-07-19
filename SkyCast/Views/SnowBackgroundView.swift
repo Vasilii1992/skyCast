@@ -80,7 +80,7 @@ class SnowView: UIView {
     
     private func makeSnowflakeCell() -> CAEmitterCell {
         let cell = CAEmitterCell()
-        cell.contents = UIImage(named: "snowflake")?.cgImage
+        cell.contents = UIImage(named: Resources.Strings.ImageName.snowflake)?.cgImage
        // количество снежинок
         cell.birthRate = 10
         // время жизни

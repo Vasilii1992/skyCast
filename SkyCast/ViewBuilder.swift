@@ -15,7 +15,6 @@ class ViewBuilder: NSObject {
 
     private var currentBackgroundView: UIView?
 
-    
     var controller: UIViewController
     var view: UIView
 
@@ -77,7 +76,7 @@ class ViewBuilder: NSObject {
 
     func getWeatherSlider() {
         
-        let weatherTitle = manager.slideTitle(titleText: "Варианты Погоды")
+        let weatherTitle = manager.slideTitle(titleText: Resources.Strings.weatherTitleText)
         
         weatherCollection = manager.getCollection(dataSource: self, delegate: self)
         weatherCollection.register(WeatherCell.self, forCellWithReuseIdentifier: WeatherCell.identifire)

@@ -41,7 +41,7 @@ class StarryNightBackgroundView: UIView {
         let upperHalfHeight = bounds.height / 2
         for _ in 0..<numberOfStars {
             let starLayer = CALayer()
-            starLayer.contents = UIImage(named: "star")?.cgImage
+            starLayer.contents = UIImage(named: Resources.Strings.ImageName.star)?.cgImage
             
             let starSize = baseStarSize * CGFloat.random(in: 1.0...starSizeVariation)
             
@@ -64,7 +64,7 @@ class StarryNightBackgroundView: UIView {
     
     private func setupCometLayer() {
         cometLayer = CALayer()
-        cometLayer.contents = UIImage(named: "comet")?.cgImage
+        cometLayer.contents = UIImage(named: Resources.Strings.ImageName.comet)?.cgImage
         cometLayer.frame = CGRect(x: bounds.width, y: bounds.height / 4, width: 100, height: 70)
         cometLayer.isHidden = true
         cometLayer.opacity = 1.0 
@@ -77,7 +77,7 @@ class StarryNightBackgroundView: UIView {
     }
     
     private func startCometAnimationAfterDelay() {
-        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { [weak self] _ in
             self?.animateComet()
         }
     }

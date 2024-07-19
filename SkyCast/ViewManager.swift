@@ -13,13 +13,12 @@ class ViewManager {
     private init() {}
     
     let weathers: [Weather] = [
-        .init(image: .init(systemName: "cloud.sun")!, type: "Солнечно"),
-        .init(image: .init(systemName: "sun.snow.fill")!, type: "Снег"),
-        .init(image: .init(systemName: "cloud.moon.rain.fill")!, type: "Дождь"),
-        .init(image: .init(systemName: "moon.stars.circle")!, type: "Ночь"),
-        .init(image: UIImage(systemName: "cloud.fog")!, type: "Туман"),
-        .init(image: UIImage(systemName: "cloud.bolt.rain")!, type: "Гроза")
-
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.sunny)!, type: Resources.Strings.TypeOfWeathers.sunny),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.snow)!, type: Resources.Strings.TypeOfWeathers.snow),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.rain)!, type: Resources.Strings.TypeOfWeathers.rain),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.night)!, type: Resources.Strings.TypeOfWeathers.night),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.fog)!, type: Resources.Strings.TypeOfWeathers.fog),
+        .init(image: UIImage(systemName: Resources.Strings.ImageNameForWeatherType.storm)!, type: Resources.Strings.TypeOfWeathers.storm),
     ]
 
     func slideTitle(titleText: String) -> UILabel {

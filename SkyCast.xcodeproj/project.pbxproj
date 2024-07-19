@@ -23,6 +23,8 @@
 		6B173C672C49338300FD3F3F /* FoggyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C662C49338300FD3F3F /* FoggyBackgroundView.swift */; };
 		6B173C6A2C49542800FD3F3F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C692C49542800FD3F3F /* UIColor+Extension.swift */; };
 		6B173C6C2C495E4A00FD3F3F /* StormBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C6B2C495E4A00FD3F3F /* StormBackgroundView.swift */; };
+		6B173C6E2C4A80D900FD3F3F /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C6D2C4A80D900FD3F3F /* Resources.swift */; };
+		6B173C702C4A812D00FD3F3F /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B173C6F2C4A812D00FD3F3F /* String+Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		6B173C662C49338300FD3F3F /* FoggyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoggyBackgroundView.swift; sourceTree = "<group>"; };
 		6B173C692C49542800FD3F3F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6B173C6B2C495E4A00FD3F3F /* StormBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormBackgroundView.swift; sourceTree = "<group>"; };
+		6B173C6D2C4A80D900FD3F3F /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		6B173C6F2C4A812D00FD3F3F /* String+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 				6B173C412C46BBEF00FD3F3F /* MainViewController.swift */,
 				6B173C552C46CF0F00FD3F3F /* ViewManager.swift */,
 				6B173C572C46CF7400FD3F3F /* ViewBuilder.swift */,
+				6B173C6D2C4A80D900FD3F3F /* Resources.swift */,
 				6B173C652C49228900FD3F3F /* Views */,
 				6B173C5D2C47DA4B00FD3F3F /* Cells */,
 				6B173C522C46BD5200FD3F3F /* Support */,
@@ -141,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				6B173C692C49542800FD3F3F /* UIColor+Extension.swift */,
+				6B173C6F2C4A812D00FD3F3F /* String+Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -216,8 +222,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B173C422C46BBEF00FD3F3F /* MainViewController.swift in Sources */,
+				6B173C702C4A812D00FD3F3F /* String+Extention.swift in Sources */,
 				6B173C672C49338300FD3F3F /* FoggyBackgroundView.swift in Sources */,
 				6B173C6C2C495E4A00FD3F3F /* StormBackgroundView.swift in Sources */,
+				6B173C6E2C4A80D900FD3F3F /* Resources.swift in Sources */,
 				6B173C5C2C46F1A300FD3F3F /* SunBackgroundView.swift in Sources */,
 				6B173C3E2C46BBEF00FD3F3F /* AppDelegate.swift in Sources */,
 				6B173C642C491F6B00FD3F3F /* Weather.swift in Sources */,

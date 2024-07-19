@@ -40,7 +40,7 @@ class RainyBackgroundView: UIView {
         let cloudWidth: CGFloat = 400
         let cloudHeight: CGFloat = 200
         floatingCloudLayer.frame = CGRect(x: -cloudWidth, y: 60, width: cloudWidth, height: cloudHeight)
-        floatingCloudLayer.contents = UIImage(named: "clouds3")?.cgImage
+        floatingCloudLayer.contents = UIImage(named: Resources.Strings.ImageName.whiteClouds)?.cgImage
         floatingCloudLayer.opacity = 0.7
         self.layer.addSublayer(floatingCloudLayer)
         
@@ -55,7 +55,7 @@ class RainyBackgroundView: UIView {
     private func addCloudView() {
         let cloudLayer = CALayer()
         cloudLayer.frame = CGRect(x: 0, y: -50, width: 600, height: 200)
-        cloudLayer.contents = UIImage(named: "clouds")?.cgImage
+        cloudLayer.contents = UIImage(named: Resources.Strings.ImageName.clouds)?.cgImage
         cloudLayer.opacity = 0.7
         self.layer.addSublayer(cloudLayer)
     }
@@ -67,7 +67,7 @@ class RainyBackgroundView: UIView {
         rainLayer.emitterSize = CGSize(width: bounds.size.width, height: 1)
         
         let cell = CAEmitterCell()
-        cell.contents = UIImage(named: "drop of rain")?.cgImage
+        cell.contents = UIImage(named: Resources.Strings.ImageName.dropOfRain)?.cgImage
         cell.birthRate = 1000
         cell.lifetime = 5.0
         cell.velocity = 1000

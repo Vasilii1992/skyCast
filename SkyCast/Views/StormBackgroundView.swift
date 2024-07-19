@@ -44,7 +44,7 @@ class StormBackgroundView: UIView {
         let cloudWidth: CGFloat = 400
         let cloudHeight: CGFloat = 200
         floatingCloudLayer.frame = CGRect(x: position.x, y: position.y, width: cloudWidth, height: cloudHeight)
-        floatingCloudLayer.contents = UIImage(named: "clouds")?.cgImage
+        floatingCloudLayer.contents = UIImage(named: Resources.Strings.ImageName.clouds)?.cgImage
         floatingCloudLayer.opacity = 0.6
         self.layer.addSublayer(floatingCloudLayer)
         
@@ -59,7 +59,7 @@ class StormBackgroundView: UIView {
     private func addCloudView() {
         let cloudLayer = CALayer()
         cloudLayer.frame = CGRect(x: 0, y: 0, width: 600, height: 200)
-        cloudLayer.contents = UIImage(named: "dark clouds")?.cgImage
+        cloudLayer.contents = UIImage(named: Resources.Strings.ImageName.darkClouds)?.cgImage
         cloudLayer.opacity = 0.7
         self.layer.addSublayer(cloudLayer)
     }
@@ -71,7 +71,7 @@ class StormBackgroundView: UIView {
         rainLayer.emitterSize = CGSize(width: bounds.size.width, height: 1)
         
         let cell = CAEmitterCell()
-        cell.contents = UIImage(named: "water line")?.cgImage
+        cell.contents = UIImage(named: Resources.Strings.ImageName.waterLine)?.cgImage
         cell.birthRate = 2000
         cell.lifetime = 5.0
         cell.velocity = 1000
@@ -93,7 +93,7 @@ class StormBackgroundView: UIView {
            lightningLayer?.removeFromSuperlayer()
            
            let lightningLayer = CALayer()
-           let lightningImage = UIImage(named: "lightning")?.cgImage
+        let lightningImage = UIImage(named:Resources.Strings.ImageName.lightning)?.cgImage
            let lightningImageWidth = lightningImage?.width ?? 0
            let lightningImageHeight = lightningImage?.height ?? 0
            let halfWidth = CGFloat(lightningImageWidth) / 2

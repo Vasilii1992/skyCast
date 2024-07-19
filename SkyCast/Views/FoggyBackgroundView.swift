@@ -38,7 +38,7 @@ class FoggyBackgroundView: UIView {
 
     private func addFogView() {
         let fogLayer = CALayer()
-        let fogImage = UIImage(named: "fog")?.cgImage
+        let fogImage = UIImage(named: Resources.Strings.ImageName.fog)?.cgImage
         fogLayer.contents = fogImage
         fogLayer.frame = CGRect(x: -self.bounds.width, y: 0, width: self.bounds.width * 2, height: self.bounds.height / 2)
         fogLayer.opacity = 0.5
