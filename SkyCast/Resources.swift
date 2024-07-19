@@ -11,15 +11,15 @@ enum Resources {
     
     enum Strings {
         
-        static let weatherTitleText = "Weather Options"
+        static let weatherTitleText = "Weather Options".localized()
         
         enum TypeOfWeathers {
-            static let sunny = "Sunny"
-            static let snow  = "Snow"
-            static let rain  = "Rain"
-            static let night = "Night"
-            static let fog   = "Fog"
-            static let storm = "Storm"
+            static let sunny = "Sunny".localized()
+            static let snow  = "Snow".localized()
+            static let rain  = "Rain".localized()
+            static let night = "Night".localized()
+            static let fog   = "Fog".localized()
+            static let storm = "Storm".localized()
         }
         enum ImageNameForWeatherType {
             static let sunny = "cloud.sun"
