@@ -1,7 +1,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private lazy var builder = {
         return ViewBuilder(controller: self)

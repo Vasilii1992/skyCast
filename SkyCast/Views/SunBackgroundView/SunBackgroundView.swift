@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SunBackgroundView: UIView {
+final class SunBackgroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

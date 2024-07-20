@@ -1,7 +1,7 @@
 
 import UIKit
 
-class DarkCloudView: UIView {
+final class DarkCloudView: UIView {
     
     private let cloudLayer = CALayer()
     

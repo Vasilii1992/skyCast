@@ -1,7 +1,7 @@
 
 import UIKit
 
-class StarryNightBackgroundView: UIView {
+final class StarryNightBackgroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

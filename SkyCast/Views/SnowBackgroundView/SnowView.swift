@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SnowView: UIView {
+final class SnowView: UIView {
     
     override class var layerClass: AnyClass {
         return CAEmitterLayer.self

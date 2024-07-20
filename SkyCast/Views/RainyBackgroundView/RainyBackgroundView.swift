@@ -1,7 +1,7 @@
 
 import UIKit
 
-class RainyBackgroundView: UIView {
+final class RainyBackgroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

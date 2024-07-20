@@ -1,7 +1,7 @@
 
 import UIKit
 
-class FloatingCloudView: UIView {
+final class FloatingCloudView: UIView {
     
     private let floatingCloudLayer = CALayer()
     

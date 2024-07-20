@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SnowBackgroundView: UIView {
+final class SnowBackgroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

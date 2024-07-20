@@ -1,9 +1,9 @@
 
 import UIKit
 
-class StarsView: UIView {
+final class StarsView: UIView {
     
-    private let numberOfStars = 80
+    private let numberOfStars = 100
     private let baseStarSize: CGFloat = 10.0
     private let starSizeVariation: CGFloat = 4
     
@@ -17,7 +17,7 @@ class StarsView: UIView {
     }
     
     private func addStars() {
-        let upperHalfHeight = bounds.height / 2
+        let upperHalfHeight = bounds.height
         for _ in 0..<numberOfStars {
             let starLayer = CALayer()
             starLayer.contents = UIImage(named: Resources.Strings.ImageName.star)?.cgImage

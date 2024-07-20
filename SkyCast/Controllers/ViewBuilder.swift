@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ViewBuilder: NSObject {
+final class ViewBuilder: NSObject {
     
     private let manager = ViewManager.shared
     private var weatherCollection: UICollectionView!
@@ -16,7 +16,7 @@ class ViewBuilder: NSObject {
         self.view = controller.view
     }
     
-    func setBackgroundView(_ weatherBackgroundView: UIView ) {
+   private func setBackgroundView(_ weatherBackgroundView: UIView ) {
         self.view.insertSubview(weatherBackgroundView, belowSubview: weatherCollection)
         weatherBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -42,7 +42,7 @@ class ViewBuilder: NSObject {
     }
     
     //MARK: Animation of the transition between screens
-    func animateBackgroundTransition(to newBackgroundView: UIView) {
+   private func animateBackgroundTransition(to newBackgroundView: UIView) {
         guard let currentBackgroundView = currentBackgroundView else {
             setBackgroundView(newBackgroundView)
             newBackgroundView.alpha = 0

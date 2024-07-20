@@ -2,7 +2,7 @@
 
 import UIKit
 
-class StormBackgroundView: UIView {
+final class StormBackgroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

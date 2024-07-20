@@ -1,7 +1,7 @@
 
 import UIKit
 
-class WeatherCell: UICollectionViewCell {
+final class WeatherCell: UICollectionViewCell {
     
     static let identifire = "WeatherCell"
     

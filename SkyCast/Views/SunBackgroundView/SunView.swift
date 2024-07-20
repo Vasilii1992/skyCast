@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SunView: UIView {
+final class SunView: UIView {
     
     private let sunLayer = CALayer()
     private let sunEffectLayer = CAEmitterLayer()
@@ -21,7 +21,7 @@ class SunView: UIView {
     }
     
     private func setupSunLayer() {
-        sunLayer.frame = CGRect(x: 160, y: -100, width: 380, height: 380)
+        sunLayer.frame = CGRect(x: self.bounds.width - 230, y: -100, width: 380, height: 380)
         sunLayer.contents = UIImage(named: Resources.Strings.ImageName.sun)?.cgImage
         self.layer.addSublayer(sunLayer)
     }

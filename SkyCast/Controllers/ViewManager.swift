@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ViewManager {
+final class ViewManager {
     
     static let shared = ViewManager()
     private init() {}

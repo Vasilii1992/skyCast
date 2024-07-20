@@ -1,7 +1,7 @@
 
 import UIKit
 
-class CometView: UIView {
+final class CometView: UIView {
     
     private let cometLayer = CALayer()
     

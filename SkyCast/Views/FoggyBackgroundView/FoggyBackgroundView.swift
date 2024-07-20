@@ -1,13 +1,13 @@
 
 import UIKit
 
-class FoggyBackgroundView: UIView {
+final class FoggyBackgroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupGradientLayer()
-        addFogView()
         addCloudView()
+        addMultipleFloatingCloudViews()
     }
     
     required init?(coder: NSCoder) {
@@ -30,8 +30,15 @@ class FoggyBackgroundView: UIView {
         self.addSubview(cloudView)
     }
     
-    private func addFogView() {
-        let fogView = FogView(frame: self.bounds)
-        self.addSubview(fogView)
+    private func addMultipleFloatingCloudViews() {
+        let positions = [
+            CGPoint(x: 400, y: 40),
+            CGPoint(x: -25, y: 370)
+        ]
+        
+        for position in positions {
+            let floatingCloudView = FogView(frame: self.bounds, position: position)
+            self.addSubview(floatingCloudView)
+        }
     }
 }

@@ -1,7 +1,7 @@
 
 import UIKit
 
-class LightningView: UIView {
+final class LightningView: UIView {
     
     private var lightningLayer: CALayer?
     private var lightningTimer: Timer?
