@@ -11,4 +11,7 @@
 - Адаптивный дизайн: подходит под разные размеры экранов iPhone.
 - Приложение поддерживает два языка: Русский и Английский.
 
+## Скриншоты
+<img src="https://github.com/Vasilii1992/skyCast/blob/main/Fog.png" width="200" height="400"> <img src="https://github.com/Vasilii1992/skyCast/blob/main/Night.png" width="200" height="400"> <img src="https://github.com/Vasilii1992/skyCast/blob/main/Thunderstorm.png" width="200" height="400">
+
 
