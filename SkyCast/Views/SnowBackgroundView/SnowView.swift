@@ -3,31 +3,22 @@ import UIKit
 
 final class SnowView: UIView {
     
-    override class var layerClass: AnyClass {
-        return CAEmitterLayer.self
-    }
-    
-    private var emitterLayer: CAEmitterLayer {
-        return self.layer as! CAEmitterLayer
-    }
-    
+    private var snowLayer = CAEmitterLayer()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupEmitter()
+        setupSnowLayer()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setupEmitter() {
-        emitterLayer.emitterShape = .line
-        emitterLayer.emitterPosition = CGPoint(x: bounds.midX, y: 0)
-        emitterLayer.emitterSize = CGSize(width: bounds.size.width, height: 1)
-        emitterLayer.emitterCells = [makeSnowflakeCell()]
-    }
-    
-    private func makeSnowflakeCell() -> CAEmitterCell {
+    private func setupSnowLayer() {
+        snowLayer.emitterShape = .line
+        snowLayer.emitterPosition = CGPoint(x: bounds.midX, y: 0)
+        snowLayer.emitterSize = CGSize(width: bounds.size.width, height: 1)
+
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: Resources.Strings.ImageName.snowflake)?.cgImage
         cell.birthRate = 10
@@ -38,6 +29,8 @@ final class SnowView: UIView {
         cell.scale = 0.01
         cell.scaleRange = 0.013
         cell.emissionRange = .pi
-        return cell
+        
+        snowLayer.emitterCells = [cell]
+        self.layer.addSublayer(snowLayer)
     }
 }
