@@ -63,7 +63,6 @@ final class ViewBuilder: NSObject {
         })
     }
     
-    
     func getWeatherSlider() {
         
         let weatherTitle = manager.slideTitle(titleText: Resources.Strings.weatherTitleText)
